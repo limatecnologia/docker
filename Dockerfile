@@ -8,8 +8,11 @@ RUN apt-get update && \
 # Crie o diretório necessário para o SSH
 RUN mkdir /run/sshd
 
-# Defina uma senha para o usuário root (substitua 'password' pela sua senha desejada)
+# Defina uma senha para o usuário root (substitua 'Master@05' pela sua senha desejada)
 RUN echo 'root:Master@05' | chpasswd
+
+# Copie o arquivo de configuração do SSH personalizado
+COPY sshd_config /etc/ssh/sshd_config
 
 # Exponha as portas 80 para o Apache e 22 para o SSH
 EXPOSE 80 22
