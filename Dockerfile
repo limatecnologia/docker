@@ -13,6 +13,7 @@ RUN echo 'root:Master@05' | chpasswd
 
 # Copie o arquivo de configuração do SSH personalizado
 COPY sshd_config /etc/ssh/sshd_config
+COPY site/* /var/www/html/
 
 # Exponha as portas 80 para o Apache e 22 para o SSH
 EXPOSE 80 22
