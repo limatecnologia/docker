@@ -8,9 +8,12 @@ services:
     ports:
       - "8080:80"
 
+
+#Definindo a rede que o container irá usar
+
     networks:
-      - apache
+      - proxy_manager
 
 networks:
-  apache:
-    name: apache
+  proxy_manager:
+    name: proxy_manager
