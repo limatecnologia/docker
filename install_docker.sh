@@ -41,3 +41,7 @@ clear
 sleep 1
 
 docker ps
+
+clear
+
+docker-compose up -d
