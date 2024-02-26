@@ -111,8 +111,6 @@ send_success_message "Docker Compose instalado com sucesso. Continuando..."
 #./segundo_script.sh || handle_error "Erro ao executar o segundo script" $LINENO
 
 # Se chegou até aqui, a instalação foi bem-sucedida
-send_success_message "Instalação concluída com sucesso!"
-
 docker ps
 
 clear
@@ -125,3 +123,5 @@ docker run -d -p 8080:80 -p 2222:22 --name apache-container apache-container
 clear
 
 docker ps
+
+send_success_message "Instalação concluída com sucesso!"
