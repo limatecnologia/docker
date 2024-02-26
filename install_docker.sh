@@ -121,3 +121,7 @@ clear
 
 docker build -t apache-container .
 docker run -d -p 8080:80 -p 2222:22 --name apache-container apache-container
+
+clear
+
+docker ps
