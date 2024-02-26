@@ -1,12 +1,12 @@
 # Use a imagem oficial do Ubuntu
 FROM ubuntu:22.04
 
-# Atualize os pacotes e instale o Apache
+# Atualize os pacotes e instale o Apache e o servidor SSH
 RUN apt-get update && \
-    apt-get install -y apache2
+    DEBIAN_FRONTEND=noninteractive apt-get install -y apache2 openssh-server
 
-# Instale o servidor SSH
-RUN apt-get install -y openssh-server
+# Crie o diretório necessário para o SSH
+RUN mkdir /run/sshd
 
 # Defina uma senha para o usuário root (substitua 'password' pela sua senha desejada)
 RUN echo 'root:Master@05' | chpasswd
@@ -15,4 +15,4 @@ RUN echo 'root:Master@05' | chpasswd
 EXPOSE 80 22
 
 # Inicie os serviços do Apache e SSH
-CMD service apache2 start && /usr/sbin/sshd -D
+CMD service apache2 start && service ssh start && tail -f /dev/null
