@@ -14,7 +14,7 @@ sudo apt install -y apt-transport-https ca-certificates curl software-properties
 sleep 1
 clear
 
-echo "                                      Adiciocionando chave GPG do repositorio oficial"
+echo "                                      Adicionando chave GPG do repositorio oficial"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 sleep 1
 clear
