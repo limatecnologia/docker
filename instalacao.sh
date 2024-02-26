@@ -1,5 +1,6 @@
 #!/bin/bash
 
+clear
 echo "                                            Instalando o GIT"
 apt install -y git
 clear
