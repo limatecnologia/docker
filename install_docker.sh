@@ -11,7 +11,7 @@ send_whatsapp_message() {
     local phone_number=$1
     local message_type=$2
     local message=$3
-    ./limazap "$phone_number" "$message_type" "$message"
+    ./limazap "$phone_number" "$message_type\n\n" "$message"
 }
 
 # Pergunta se deseja receber alertas no WhatsApp
@@ -27,7 +27,7 @@ handle_error() {
     local exit_code=$?
     local message=$1
     send_whatsapp_message "$phone_number" "Erro" "$message"
-    echo "Erro: $message na linha $2 com código de saída $exit_code."
+    echo "Erro:\n\n $message na linha $2 com código de saída $exit_code."
     exit $exit_code
 }
 
@@ -40,16 +40,16 @@ send_success_message() {
 send_success_message "Iniciando a instalação do docker e docker-compose $(uname -s)-$(uname -m)"
 
 echo "Instalação do docker e docker-compose $(uname -s)-$(uname -m)"
-sleep 10
+sleep 2
 clear
 
 # Verifica se o curl está instalado, e instala se necessário
-if ! check_command curl; then
-    send_whatsapp_message "$phone_number" "Erro" "Erro ao instalar o curl"
-    handle_error "Erro ao instalar o curl" $LINENO
-fi
+#if ! check_command curl; then
+#    send_whatsapp_message "$phone_number" "Erro" "Erro ao instalar o curl"
+#    handle_error "Erro ao instalar o curl" $LINENO
+#fi
 
-send_success_message "Curl instalado com sucesso. Continuando..."
+#send_success_message "Curl instalado com sucesso. Continuando..."
 
 echo "Atualizando repositório"
 sudo apt update || handle_error "Erro ao atualizar o repositório" $LINENO
@@ -76,6 +76,12 @@ sudo apt update || handle_error "Erro ao atualizar o repositório após adiciona
 sleep 1
 clear
 
+echo "Instalando o docker"
+sudo apt install -y docker-ce
+sleep 1
+clear
+
+
 # Verifica se o Docker está instalado, e instala se necessário
 if ! check_command docker; then
     send_whatsapp_message "$phone_number" "Erro" "Erro ao instalar o Docker"
@@ -83,6 +89,14 @@ if ! check_command docker; then
 fi
 
 send_success_message "Docker instalado com sucesso. Continuando..."
+
+
+
+echo "                                      Instalando o docker-compose"
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+clear
+sleep 1
 
 # Verifica se o docker-compose está instalado, e instala se necessário
 if ! check_command docker-compose; then
