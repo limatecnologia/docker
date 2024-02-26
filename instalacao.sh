@@ -36,4 +36,6 @@ clear
 echo "Iniciando instalação..."
 clear
 sleep 1
+chmod +x limazap
+
 ./install_docker.sh
