@@ -9,7 +9,7 @@ git clone https://github.com/limatecnologia/docker.git
 clear
 
 echo "                                            Acessando a pasta"
-cd /docker
+cd docker/
 
 echo "                                            Dando permissão ao arquivo"
 chmod +x install_docker.sh
