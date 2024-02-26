@@ -5,7 +5,7 @@ sleep 10
 clear
 
 echo "                                      Atualizando repositorio"
-sudo apt update && apt upgrade -y
+sudo apt update
 sleep 1
 clear
 
