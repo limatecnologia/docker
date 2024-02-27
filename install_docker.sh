@@ -43,14 +43,6 @@ echo "Instalação do docker e docker-compose $(uname -s)-$(uname -m)"
 sleep 2
 clear
 
-# Verifica se o curl está instalado, e instala se necessário
-#if ! check_command curl; then
-#    send_whatsapp_message "$phone_number" "Erro" "Erro ao instalar o curl"
-#    handle_error "Erro ao instalar o curl" $LINENO
-#fi
-
-#send_success_message "Curl instalado com sucesso. Continuando..."
-
 echo "Atualizando repositório"
 sudo apt update || handle_error "Erro ao atualizar o repositório" $LINENO
 sleep 1
@@ -105,12 +97,6 @@ if ! check_command docker-compose; then
 fi
 
 send_success_message "Docker Compose instalado com sucesso. Continuando..."
-
-# Chama o segundo script (substitua o caminho e nome do script real)
-#echo "Executando segundo script..."
-#./segundo_script.sh || handle_error "Erro ao executar o segundo script" $LINENO
-
-# Se chegou até aqui, a instalação foi bem-sucedida
 
 cd docker/
 docker ps
