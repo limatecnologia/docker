@@ -1,19 +1,15 @@
 version: '3'
 services:
-
   web:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8080:80"
-
-
-#Definindo a rede que o container irá usar
-
+      - "22:10022"
     networks:
       - proxy_manager
 
 networks:
   proxy_manager:
-    name: proxy_manager
+    external: true
